@@ -66,7 +66,7 @@ class Spork::AppFramework::Rails < Spork::AppFramework
     def delay_application_controller_loading
       if application_controller_source = ["#{Dir.pwd}/app/controllers/application.rb", "#{Dir.pwd}/app/controllers/application_controller.rb"].find { |f| File.exist?(f) }
         application_helper_source = "#{Dir.pwd}/app/helpers/application_helper.rb"
-        load_paths = (::ActiveSupport.const_defined?(:Dependencies) ? ::ActiveSupport::Dependencies : ::Dependencies).load_paths
+        load_paths = (::ActiveSupport.const_defined?(:Dependencies) ? ::ActiveSupport::Dependencies : ::Dependencies).autoload_paths
         load_paths.unshift(File.expand_path('rails_stub_files', File.dirname(__FILE__)))
         Spork.each_run do
           require application_controller_source
