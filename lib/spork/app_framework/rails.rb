@@ -39,7 +39,6 @@ class Spork::AppFramework::Rails < Spork::AppFramework
       delay_app_preload
       delay_application_controller_loading
       delay_route_loading
-      delay_eager_view_loading
     end
 
     def reset_rails_env
