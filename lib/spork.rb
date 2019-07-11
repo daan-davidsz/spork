@@ -109,7 +109,7 @@ module Spork
 
     def other_spork_gem_load_paths
       @other_spork_gem_load_paths ||= (
-        Gem.latest_load_paths.grep(/spork/).select do |g|
+        $LOAD_PATH.map { |p| File.expand_path(p) }.uniq.select do |g|
           not g.match(%r{/spork-[0-9\-.]+/lib}) # don't include other versions of spork
         end
       )
